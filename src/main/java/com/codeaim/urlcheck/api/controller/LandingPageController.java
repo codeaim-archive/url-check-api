@@ -3,7 +3,6 @@ package com.codeaim.urlcheck.api.controller;
 import com.codeaim.urlcheck.common.model.Check;
 import com.codeaim.urlcheck.common.model.Result;
 import com.google.common.collect.ImmutableMap;
-import org.hibernate.annotations.Immutable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,8 +23,14 @@ public class LandingPageController
     {
         return new ResponseEntity<>(
                 ImmutableMap.<String, Object>builder()
-                        .put(Check.class.getSimpleName().toLowerCase(), linkTo(methodOn(CheckController.class).getChecks()).toUri())
-                        .put(Result.class.getSimpleName().toLowerCase(), linkTo(methodOn(ResultController.class).getResults()).toUri())
+                        .put(
+                                Check.class.getSimpleName().toLowerCase(),
+                                linkTo(methodOn(CheckController.class).getChecks()).toUri()
+                        )
+                        .put(
+                                Result.class.getSimpleName().toLowerCase(),
+                                linkTo(methodOn(ResultController.class).getResults()).toUri()
+                        )
                         .build(),
                 HttpStatus.OK
         );
